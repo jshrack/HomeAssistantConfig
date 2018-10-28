@@ -2,6 +2,7 @@
 !*.yaml
 !.gitignore
 !.travis.yml
+!README.md
 *.conf
 *.txt
 *.log
