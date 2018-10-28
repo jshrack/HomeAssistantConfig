@@ -1,9 +1,7 @@
 # HomeAssistantConfig
 Configuration for @jshrack's Home Assistant Installation
 
-![Home Assistant Logo] (https://www.home-assistant.io/images/components/alexa/alexa-512x512.png "Home Assistant Logo")
-
-# (https://github.com/jshrack/hass-config/blob/master/images/hass.png "Home Assistant Logo")
+![Home Assistant Logo](https://www.home-assistant.io/images/components/alexa/alexa-512x512.png "Home Assistant Logo")
 
 # Home Assistant Configuration
 
