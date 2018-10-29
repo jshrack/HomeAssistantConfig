@@ -1,12 +1,10 @@
-zone:
-  name: Lake
+- name: Lake
   latitude: !secret lake_latitude
   longitude: !secret lake_longitude
   radius: 200
   icon: mdi:home
 
-zone 2:
-  name: Home
+- name: Home
   latitude: !secret home_latitude
   longitude: !secret home_longitude
   radius: 200
