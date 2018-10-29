@@ -3,6 +3,8 @@
 !.gitignore
 !.travis.yml
 !README.md
+!/config/themes/*.yaml
+!/config/www/*
 *.conf
 *.txt
 *.log

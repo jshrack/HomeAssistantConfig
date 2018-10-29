@@ -219,6 +219,9 @@ sensor:
   - platform: time_date
     display_options:
       - 'date_time'
+  - platform: travisci
+    api_key: a8221ac461dcd9b4681622233e5636a2ffc5fc99
+    repository: HomeAssistantConfig
       
 vera:
   vera_controller_url: !secret vera_controller_url
