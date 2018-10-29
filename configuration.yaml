@@ -220,7 +220,7 @@ sensor:
     display_options:
       - 'date_time'
   - platform: travisci
-    api_key: a8221ac461dcd9b4681622233e5636a2ffc5fc99
+    api_key: !secret travisci_api_key
     repository: HomeAssistantConfig
       
 vera:
