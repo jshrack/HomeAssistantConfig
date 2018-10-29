@@ -339,15 +339,24 @@ camera:
     name: South Yard
     input: -rtsp_transport tcp -i !secret camera_south_yard_rtsp_uri
   - platform: ffmpeg
-    name: Driveway West
-    input: -rtsp_transport tcp -i !secret camera_driveway_west_rtsp_uri
+    name: Driveway 1
+    input: -rtsp_transport tcp -i !secret camera_driveway_1_rtsp_uri
+    extra_arguments: -q:v 1 -r 30
+  - platform: ffmpeg
+    name: Driveway 2
+    input: -rtsp_transport tcp -i !secret camera_driveway_2_rtsp_uri
+    extra_arguments: -q:v 1 -r 30 
+  - platform: ffmpeg
+    name: Driveway 3
+    input: -rtsp_transport tcp -i !secret camera_driveway_3_rtsp_uri
+    extra_arguments: -q:v 1 -r 30
   - platform: ffmpeg
     name: South Gate
     input: -rtsp_transport tcp -i !secret camera_south_gate_rtsp_uri
   - platform: ffmpeg
     name: Garage South Fenceline
     input: -rtsp_transport tcp -i !secret camera_south_fenceline_rtsp_uri
-#    extra_arguments: -pred 1 -q:v 2
+    extra_arguments: -pred 1 # -q:v 2
   - platform: ffmpeg
     name: Main Gate
     input: -rtsp_transport tcp -i !secret camera_main_gate_rtsp_uri
