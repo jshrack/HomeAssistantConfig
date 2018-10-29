@@ -79,7 +79,7 @@ panel_iframe:
   configurator:
     title: Configurator
     icon: mdi:wrench
-    url: http://hassio.local:3218
+    url: https://hassio.local:3218
   terminal:
     title: Terminal
     icon: mdi:console
@@ -91,7 +91,7 @@ panel_iframe:
   grafana:
     title: Grafana
     icon: mdi:chart-timeline
-    url: http://hassio.local:3000
+    url: https://hassio.local:3000
   influxdb:
     title: InfluxDB
     icon: mdi:chart-areaspline
@@ -114,7 +114,16 @@ zone 2:
   longitude: !secret home_longitude
   radius: 200
   icon: mdi:home
-  
+
+influxdb:
+  host: localhost
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
@@ -250,7 +259,7 @@ notify:
 
 abode:
   username: !secret abode_username
-  password: !secret abode_username
+  password: !secret abode_password
 
 nest:
   client_id: !secret nest_client_id
@@ -337,7 +346,8 @@ axis:
 camera:
   - platform: ffmpeg
     name: South Yard
-    input: -rtsp_transport tcp -i !secret camera_south_yard_rtsp_uri
+    input: -rtsp_transport tcp -i "!secret camera_south_yard_rtsp_uri"
+    extra_arguments: -q:v 1 -r 30
   - platform: ffmpeg
     name: Driveway 1
     input: -rtsp_transport tcp -i !secret camera_driveway_1_rtsp_uri
