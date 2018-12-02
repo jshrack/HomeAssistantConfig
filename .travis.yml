@@ -8,7 +8,7 @@ install:
 script:
   - hass -c . --script check_config --info all
 notifications:
-    slack: 'killbox1:vXUgaLtQyRzZQQkIJ7hFd877'
-      template:
-        - "Build *<%{build_url}|#%{build_number}>* (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} "
-        - "by _%{author}_ %{result} in %{duration}"
+  slack: 'killbox1:vXUgaLtQyRzZQQkIJ7hFd877'
+    template:
+    - "Build *<%{build_url}|#%{build_number}>* (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} "
+    - "by _%{author}_ %{result} in %{duration}"
