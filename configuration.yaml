@@ -100,6 +100,10 @@ panel_iframe:
     title: Node-RED
     icon: mdi:sitemap
     url: https://hassio.local:1880
+  portainer:
+    title: Portainer
+    icon: mdi:docker
+    url: https://hassio.local:9000
 
 #zone:
 #  name: Lake
@@ -115,14 +119,14 @@ panel_iframe:
 #  radius: 200
 #  icon: mdi:home
 
-influxdb:
-  host: localhost
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
+#influxdb:
+#  host: localhost
+#  port: 8086
+#  database: homeassistant
+#  username: homeassistant
+#  password: !secret influxdb_password
+#  max_retries: 3
+#  default_measurement: state
 
 weather:
   - platform: darksky
@@ -243,6 +247,24 @@ sensor:
   - platform: uptime
     name: "HomeAssistant Uptime"
 
+openuv:
+  api_key: !secret openuv_api_key
+  binary_sensors:
+    monitored_conditions:
+      - uv_protection_window
+  sensors:
+    monitored_conditions:
+      - current_ozone_level
+      - current_uv_index
+      - current_uv_level
+      - max_uv_index
+      - safe_exposure_time_type_1
+      - safe_exposure_time_type_2
+      - safe_exposure_time_type_3
+      - safe_exposure_time_type_4
+      - safe_exposure_time_type_5
+      - safe_exposure_time_type_6
+
 vera:
   vera_controller_url: !secret vera_controller_url
 
@@ -355,29 +377,29 @@ axis:
     location: Main House Interior Entry
 
 camera:
-  - platform: ffmpeg
-    name: South Yard
-    input: !secret camera_south_yard_rtsp_uri
-    extra_arguments: -q:v 1 -r 30
-  - platform: ffmpeg
-    name: Driveway 1
-    input: !secret camera_driveway_1_rtsp_uri
-    extra_arguments: -q:v 1 -r 30
-  - platform: ffmpeg
-    name: Driveway 2
-    input: !secret camera_driveway_2_rtsp_uri
-    extra_arguments: -q:v 1 -r 30 
-  - platform: ffmpeg
-    name: Driveway 3
-    input: !secret camera_driveway_3_rtsp_uri
-    extra_arguments: -q:v 1 -r 30
-  - platform: ffmpeg
-    name: South Gate
-    input: !secret camera_south_gate_rtsp_uri
-  - platform: ffmpeg
-    name: Garage South Fenceline
-    input: !secret camera_south_fenceline_rtsp_uri
-    extra_arguments: -q:v 1 -r 30
+#  - platform: ffmpeg
+#    name: South Yard
+#    input: !secret camera_south_yard_rtsp_uri
+#    extra_arguments: -q:v 1 -r 30
+#  - platform: ffmpeg
+#    name: Driveway 1
+#    input: !secret camera_driveway_1_rtsp_uri
+#    extra_arguments: -q:v 1 -r 30
+#  - platform: ffmpeg
+#    name: Driveway 2
+#    input: !secret camera_driveway_2_rtsp_uri
+#    extra_arguments: -q:v 1 -r 30 
+#  - platform: ffmpeg
+#    name: Driveway 3
+#    input: !secret camera_driveway_3_rtsp_uri
+#    extra_arguments: -q:v 1 -r 30
+#  - platform: ffmpeg
+#    name: South Gate
+#    input: !secret camera_south_gate_rtsp_uri
+#  - platform: ffmpeg
+#    name: Garage South Fenceline
+#    input: !secret camera_south_fenceline_rtsp_uri
+#    extra_arguments: -q:v 1 -r 30
   - platform: ffmpeg
     name: Main Gate
     input: !secret camera_main_gate_rtsp_uri
@@ -393,10 +415,17 @@ device_tracker:
     events_only: false
   - platform: gpslogger
     password: !secret gpslogger_password
-  - platform: icloud
-    username: !secret icloud_username
-    password: !secret icloud_password
-    account_name: !secret icloud_account_name
+#   - platform: googlehome
+#     host: !secret googlehome_host
+#  - platform: icloud
+#    username: !secret icloud_username
+#    password: !secret icloud_password
+#    account_name: !secret icloud_account_name
+
+# asuswrt:
+#   host: !secret asuswrt_host
+#   username: !secret asuswrt_admin_username
+#   password: !secret asuswrt_admin_password
 
 rachio:
   api_key: !secret rachio_api_key

@@ -1,1 +1,33 @@
-[]
+# - id: '1542064264339'
+#   alias: Hassio Snapshot
+#   trigger:
+#   - at: '3:00:00'
+#     platform: time
+#   condition: []
+#   action:
+#   - data:
+#       name: Automated Backup{{ now().strftime('%Y-%m-%d') }}
+#     service: hassio.snapshot_full
+    
+# - id: '1542089370995'
+#   alias: Upload Snapshot to Dropbox
+#   trigger:
+#   - at: '4:00:00'
+#     platform: time
+#   condition: []
+#   action:
+#   - data:
+#       addon: 7be23ff5_dropbox_sync
+#       input:
+#         command: upload
+#     service: hassio.addon_stdin
+    
+- alias: Nightly Hassio Snapshot
+  trigger:
+    platform: time
+    at: '02:00:00'
+  action:
+  - service: hassio.snapshot_full
+    data_template:
+      name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+      # password: !secret snapshot_password
