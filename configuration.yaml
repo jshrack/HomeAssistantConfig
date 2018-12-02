@@ -151,6 +151,10 @@ mqtt:
 mqtt_statestream:
   base_topic: homeassistant
 
+binary_sensor:
+  - platform: uptimerobot
+    api_key: !secret uptime_robot_api_key
+
 sensor:
 # Weather prediction
   - platform: yr
