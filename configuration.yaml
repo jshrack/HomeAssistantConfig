@@ -44,6 +44,8 @@ updater:
 
 # Discover some devices automatically
 discovery:
+  enable:
+    - homekit
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -69,6 +71,9 @@ cloud:
 
 # iOS
 ios:
+
+# Homekit Support
+homekit:
 
 automation: !include automations.yaml
 script: !include scripts.yaml
@@ -412,24 +417,24 @@ camera:
     input: !secret camera_main_house_south_deck_rtsp_uri
 
 device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 200
-    waypoints: true
-    mqtt_topic: "owntracks/#"
-    events_only: false
+#  - platform: owntracks
+#    max_gps_accuracy: 200
+#    waypoints: true
+#    mqtt_topic: "owntracks/#"
+#    events_only: false
   - platform: gpslogger
     password: !secret gpslogger_password
-#   - platform: googlehome
-#     host: !secret googlehome_host
+  - platform: googlehome
+    host: !secret googlehome_host
 #  - platform: icloud
 #    username: !secret icloud_username
 #    password: !secret icloud_password
 #    account_name: !secret icloud_account_name
 
-# asuswrt:
-#   host: !secret asuswrt_host
-#   username: !secret asuswrt_admin_username
-#   password: !secret asuswrt_admin_password
+asuswrt:
+  host: !secret asuswrt_host
+  username: !secret asuswrt_admin_username
+  password: !secret asuswrt_admin_password
 
 rachio:
   api_key: !secret rachio_api_key
