@@ -26,6 +26,8 @@ frontend:
 # Enables configuration UI
 config:
 
+system_health:
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
   api_password: !secret http_api_password
@@ -143,22 +145,28 @@ netatmo:
   username: !secret netatmo_username
   password: !secret netatmo_password
 
-mqtt:
-  broker: !secret mqtt_broker
-  port: 8883
-  client_id: homeassistant
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  certificate: /etc/ssl/certs/ca-certificates.crt
-  protocol: 3.1.1
-  tls_version: '1.2'
+# mqtt:
+#   broker: !secret mqtt_broker
+#   port: 8883
+#   client_id: homeassistant
+#   username: !secret mqtt_username
+#   password: !secret mqtt_password
+#   certificate: /etc/ssl/certs/ca-certificates.crt
+#   protocol: 3.1.1
+#   tls_version: '1.2'
 
-mqtt_statestream:
-  base_topic: homeassistant
+# mqtt_statestream:
+#   base_topic: homeassistant
 
 binary_sensor:
   - platform: uptimerobot
     api_key: !secret uptime_robot_api_key
+
+geo_location:
+  - platform: usgs_earthquakes_feed
+    feed_type: 'past_month_all_earthquakes'
+    radius: 100
+    minimum_magnitude: 0.0
 
 sensor:
 # Weather prediction
@@ -195,14 +203,17 @@ sensor:
       - temp_f
       - temp_low_1d_f
       - temp_low_record_f
+      - dewpoint_f
+      - feelslike_f
       - precip_1d
-      - precip_1d_mm
+      - precip_1d_in
       - UV
       - visibility_mi
       - weather_1h
       - wind_degrees
       - wind_dir
       - wind_mph
+      - wind_gust_mph
       - wind_1d_mph
       - alerts
       - weather_1d
@@ -276,6 +287,9 @@ openuv:
 
 vera:
   vera_controller_url: !secret vera_controller_url
+  exclude: [ 9, 10, 11, 12, 17, 21, 23, 54, 55, 56, 61, 62, 63, 64, 94, 95, 96, 100, 101, 105, 107, 115, 117, 123, 124, 140, 142, 144, 146, 147, 148, 151, 155, 168, 176, 177, 179, 183, 184, 186, 191, 196, 201, 207, 213, 214, 215, 223, 224, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 238, 240, 241, 243, 246, 247 ]
+  # Optional to import switches as lights - this is a list of vera device ids
+  lights: [ 74, 76, 78, 120, 133, 134, 135, 136, 160, 164, 167 ]
 
 cover:
   - platform: myq
@@ -422,26 +436,30 @@ device_tracker:
 #    waypoints: true
 #    mqtt_topic: "owntracks/#"
 #    events_only: false
-  - platform: gpslogger
-    password: !secret gpslogger_password
-  - platform: googlehome
-    host: !secret googlehome_host
+#   - platform: gpslogger
+#     password: !secret gpslogger_password
+#   - platform: googlehome
+#     host: !secret googlehome_host
+#     new_device_defaults:
+#       track_new_devices: false
+#       hide_if_away: false
 #  - platform: icloud
 #    username: !secret icloud_username
 #    password: !secret icloud_password
 #    account_name: !secret icloud_account_name
 
-asuswrt:
-  host: !secret asuswrt_host
-  username: !secret asuswrt_admin_username
-  password: !secret asuswrt_admin_password
+# asuswrt:
+#   host: !secret asuswrt_host
+#   username: !secret asuswrt_admin_username
+#   password: !secret asuswrt_admin_password
+#   mode: ap
 
 rachio:
   api_key: !secret rachio_api_key
 
-tesla:
-  username: !secret tesla_username
-  password: !secret tesla_password
+# tesla:
+#   username: !secret tesla_username
+#   password: !secret tesla_password
 
 zwave:
   usb_path: /dev/ttyACM0
