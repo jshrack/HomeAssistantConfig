@@ -112,20 +112,6 @@ panel_iframe:
     icon: mdi:docker
     url: https://hassio.local:9000
 
-#zone:
-#  name: Lake
-#  latitude: !secret lake_latitude
-#  longitude: !secret lake_longitude
-#  radius: 200
-#  icon: mdi:home
-
-#zone 2:
-#  name: Home
-#  latitude: !secret home_latitude
-#  longitude: !secret home_longitude
-#  radius: 200
-#  icon: mdi:home
-
 #influxdb:
 #  host: localhost
 #  port: 8086
@@ -165,21 +151,21 @@ binary_sensor:
 geo_location:
   - platform: usgs_earthquakes_feed
     feed_type: 'past_month_all_earthquakes'
-    radius: 100
+    radius: 30
     minimum_magnitude: 0.0
 
 sensor:
 # Weather prediction
   - platform: yr
-  - platform: speedtest
-    server_id: 1782
-    minute:
-    - 0
-    - 30
-    monitored_conditions:
-      - ping
-      - download
-      - upload
+#   - platform: speedtest
+#     server_id: 1782
+#     minute:
+#     - 0
+#     - 30
+#     monitored_conditions:
+#       - ping
+#       - download
+#       - upload
   - platform: pollen
     zip_code: !secret lake_zip_code
     monitored_conditions:
@@ -431,35 +417,9 @@ camera:
     input: !secret camera_main_house_south_deck_rtsp_uri
 
 device_tracker:
-#  - platform: owntracks
-#    max_gps_accuracy: 200
-#    waypoints: true
-#    mqtt_topic: "owntracks/#"
-#    events_only: false
-#   - platform: gpslogger
-#     password: !secret gpslogger_password
-#   - platform: googlehome
-#     host: !secret googlehome_host
-#     new_device_defaults:
-#       track_new_devices: false
-#       hide_if_away: false
-#  - platform: icloud
-#    username: !secret icloud_username
-#    password: !secret icloud_password
-#    account_name: !secret icloud_account_name
-
-# asuswrt:
-#   host: !secret asuswrt_host
-#   username: !secret asuswrt_admin_username
-#   password: !secret asuswrt_admin_password
-#   mode: ap
 
 rachio:
   api_key: !secret rachio_api_key
-
-# tesla:
-#   username: !secret tesla_username
-#   password: !secret tesla_password
 
 zwave:
   usb_path: /dev/ttyACM0
