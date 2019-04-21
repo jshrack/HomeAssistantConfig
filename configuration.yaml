@@ -66,7 +66,8 @@ sun:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 # Cloud
 cloud:
@@ -80,37 +81,104 @@ homekit:
 automation: !include automations.yaml
 script: !include scripts.yaml
 group: !include groups.yaml
+sensor: !include sensors.yaml
+switch: !include switches.yaml
 zone: !include zones.yaml
 
+panel_custom:
+  - name: hassio-main
+    sidebar_title: Configurator
+    sidebar_icon: mdi:wrench
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: configurator
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: hassio-main
+    sidebar_title: Log Viewer
+    sidebar_icon: mdi:message-text
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: logviewer
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_logviewer
+  - name: hassio-main
+    sidebar_title: InfluxDB
+    sidebar_icon: mdi:chart-areaspline
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: influxdb
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_influxdb
+  - name: hassio-main
+    sidebar_title: Node-Red
+    sidebar_icon: mdi:sitemap
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: nodered
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_nodered
+  - name: hassio-main
+    sidebar_title: Portainer
+    sidebar_icon: mdi:docker
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: portainer
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_portainer
+  - name: hassio-main
+    sidebar_title: Glances
+    sidebar_icon: mdi:speedometer
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: glances
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_glances
+  - name: hassio-main
+    sidebar_title: Terminal
+    sidebar_icon: mdi:console
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: ssh
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_ssh
+
 panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: https://hassio.local:3218
-  terminal:
-    title: Terminal
-    icon: mdi:console
-    url: https://hassio.local:7681
-  logviewer:
-    title: Log Viewer
-    icon: mdi:message-text
-    url: https://hassio.local:4277
+#   configurator:
+#     title: Configurator
+#     icon: mdi:wrench
+#     url: https://hassio.local:8123/api/hassio_ingress/gR8fNPLP7AshRxdPRlvcqXUkXfkp63J4cILmfFUjNyw/
+#   terminal:
+#     title: Terminal
+#     icon: mdi:console
+#     url: https://hassio.local:7681
+#   logviewer:
+#     title: Log Viewer
+#     icon: mdi:message-text
+#     url: https://hassio.local:4277
   grafana:
     title: Grafana
     icon: mdi:chart-timeline
     url: https://hassio.local:3000
-  influxdb:
-    title: InfluxDB
-    icon: mdi:chart-areaspline
-    url: https://hassio.local:8888
-  nodered:
-    title: Node-RED
-    icon: mdi:sitemap
-    url: https://hassio.local:1880
-  portainer:
-    title: Portainer
-    icon: mdi:docker
-    url: https://hassio.local:9000
+#   influxdb:
+#     title: InfluxDB
+#     icon: mdi:chart-areaspline
+#     url: https://hassio.local:8888
+#   nodered:
+#     title: Node-RED
+#     icon: mdi:sitemap
+#     url: https://hassio.local:1880
+#   portainer:
+#     title: Portainer
+#     icon: mdi:docker
+#     url: https://hassio.local:9000
 
 #influxdb:
 #  host: localhost
@@ -153,105 +221,6 @@ geo_location:
     feed_type: 'past_month_all_earthquakes'
     radius: 30
     minimum_magnitude: 0.0
-
-sensor:
-# Weather prediction
-  - platform: yr
-#   - platform: speedtest
-#     server_id: 1782
-#     minute:
-#     - 0
-#     - 30
-#     monitored_conditions:
-#       - ping
-#       - download
-#       - upload
-  - platform: pollen
-    zip_code: !secret lake_zip_code
-    monitored_conditions:
-    - allergy_average_forecasted
-    - allergy_average_historical
-    - allergy_index_today
-    - allergy_index_tomorrow
-    - allergy_index_yesterday
-    - disease_average_forecasted
-  - platform: wunderground
-    api_key: !secret wunderground_api_key
-    pws_id: !secret wunderground_pws_id
-    monitored_conditions:
-      - station_id
-      - precip_today_in
-      - pressure_in
-      - pressure_trend
-      - relative_humidity
-      - temp_high_record_f
-      - temp_high_1d_f
-      - temp_f
-      - temp_low_1d_f
-      - temp_low_record_f
-      - dewpoint_f
-      - feelslike_f
-      - precip_1d
-      - precip_1d_in
-      - UV
-      - visibility_mi
-      - weather_1h
-      - wind_degrees
-      - wind_dir
-      - wind_mph
-      - wind_gust_mph
-      - wind_1d_mph
-      - alerts
-      - weather_1d
-      - weather_1n
-      - weather_2d
-      - weather_2n
-      - weather_3d
-      - weather_3n
-      - weather_4d
-      - weather_4n
-  - platform: airvisual
-    api_key: !secret airvisual_api_key
-    monitored_conditions:
-      - us
-    show_on_map: false
-    scan_interval: 600
-  - platform: template
-    sensors:
-      living_room_lake:
-        value_template: '{{ states.remote.living_room_lake.attributes.current_activity }}'
-        friendly_name: 'Living Room'
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /
-      - type: memory_use_percent
-      - type: swap_use_percent
-      - type: processor_use
-      - type: load_1m
-      - type: load_5m 
-      - type: load_15m
-      - type: network_in
-        arg: eth0
-      - type: network_out
-        arg: eth0
-  - platform: time_date
-    display_options:
-      - 'date_time'
-  - platform: travisci
-    api_key: !secret travisci_api_key
-    repository: HomeAssistantConfig
-  - platform: crimereports
-    radius: 8000
-    name: Crime Reports 
-    exclude: ['Community Policing']
-  - platform: command_line
-    name: HomeAssistant Version
-    command: >-
-      cat /config/.HA_VERSION
-    scan_interval: 60
-  - platform: uptime
-    name: "HomeAssistant Uptime"
 
 openuv:
   api_key: !secret openuv_api_key
@@ -309,9 +278,11 @@ nest:
   structure:
     - Lake
 
+stream:
+
 axis:
   p1440le1:
-    host: 192.168.200.210
+    host: 192.168.200.126
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -324,7 +295,7 @@ axis:
       - tampering
     location: Main House Front Stairs
   p1440le2:
-    host: 192.168.200.213
+    host: 192.168.200.131
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -337,7 +308,7 @@ axis:
       - tampering
     location: Main House Lake
   q6035e:
-    host: 192.168.200.128
+    host: 192.168.200.129
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -347,7 +318,7 @@ axis:
       - vmd3
       - tampering
   m2014e1:
-    host: 192.168.200.123
+    host: 192.168.200.164
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -356,7 +327,7 @@ axis:
       - tampering
     location: Main House North Stairs
   m2014e2:
-    host: 192.168.200.166
+    host: 192.168.200.120
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -365,7 +336,7 @@ axis:
       - tampering
     location: Main House Front Door
   m5014:
-    host: 192.168.200.217
+    host: 192.168.200.128
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -374,7 +345,7 @@ axis:
       - tampering
     location: Garage Main Entry
   m1054:
-    host: 192.168.200.164
+    host: 192.168.200.123
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:
@@ -394,10 +365,10 @@ camera:
 #    name: Driveway 1
 #    input: !secret camera_driveway_1_rtsp_uri
 #    extra_arguments: -q:v 1 -r 30
-#  - platform: ffmpeg
-#    name: Driveway 2
-#    input: !secret camera_driveway_2_rtsp_uri
-#    extra_arguments: -q:v 1 -r 30 
+  - platform: ffmpeg
+    name: Driveway 2
+    input: !secret camera_driveway_2_rtsp_uri
+    extra_arguments: -q:v 1 -r 30 
 #  - platform: ffmpeg
 #    name: Driveway 3
 #    input: !secret camera_driveway_3_rtsp_uri

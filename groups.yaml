@@ -35,3 +35,12 @@
       - sensor.pws_weather_3n
       - sensor.pws_weather_4d
       - sensor.pws_weather_4n
+  harmony_hub:
+    name: Harmony Remote
+    control: hidden
+    entities:
+      - sensor.harmony_hub_living_room_lake
+      - switch.watch_tv
+      - switch.watch_shield_tv
+      - switch.watch_apple_tv
+      - switch.listen_to_sonos

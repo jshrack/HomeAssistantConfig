@@ -1,0 +1,55 @@
+#  switch:
+- platform: template
+  switches:
+    watch_tv:
+      friendly_name: Watch TV
+      value_template: "{{ is_state_attr('remote.living_room_lake', 'current_activity', '37670100') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room_lake
+          activity: 37670100
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room_lake
+          activity: -1
+    watch_shield_tv:
+      friendly_name: Watch Shield TV
+      value_template: "{{ is_state_attr('remote.living_room_lake', 'current_activity', '37630791') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room_lake
+          activity: 37630791
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room_lake
+          activity: -1
+    watch_apple_tv:
+      friendly_name: Watch AppleTV
+      value_template: "{{ is_state_attr('remote.living_room_lake', 'current_activity', '16598999') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room_lake
+          activity: 16598999
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room_lake
+          activity: -1
+    listen_to_sonos:
+      friendly_name: Listen to Sonos
+      value_template: "{{ is_state_attr('remote.living_room_lake', 'current_activity', '11490583') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room_lake
+          activity: 11490583
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room_lake
+          activity: -1
