@@ -151,43 +151,10 @@ panel_custom:
       ingress: a0d7b954_ssh
 
 panel_iframe:
-#   configurator:
-#     title: Configurator
-#     icon: mdi:wrench
-#     url: https://hassio.local:8123/api/hassio_ingress/gR8fNPLP7AshRxdPRlvcqXUkXfkp63J4cILmfFUjNyw/
-#   terminal:
-#     title: Terminal
-#     icon: mdi:console
-#     url: https://hassio.local:7681
-#   logviewer:
-#     title: Log Viewer
-#     icon: mdi:message-text
-#     url: https://hassio.local:4277
   grafana:
     title: Grafana
     icon: mdi:chart-timeline
     url: https://hassio.local:3000
-#   influxdb:
-#     title: InfluxDB
-#     icon: mdi:chart-areaspline
-#     url: https://hassio.local:8888
-#   nodered:
-#     title: Node-RED
-#     icon: mdi:sitemap
-#     url: https://hassio.local:1880
-#   portainer:
-#     title: Portainer
-#     icon: mdi:docker
-#     url: https://hassio.local:9000
-
-#influxdb:
-#  host: localhost
-#  port: 8086
-#  database: homeassistant
-#  username: homeassistant
-#  password: !secret influxdb_password
-#  max_retries: 3
-#  default_measurement: state
 
 weather:
   - platform: darksky
