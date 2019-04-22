@@ -332,10 +332,10 @@ camera:
 #    name: Driveway 1
 #    input: !secret camera_driveway_1_rtsp_uri
 #    extra_arguments: -q:v 1 -r 30
-  - platform: ffmpeg
-    name: Driveway 2
-    input: !secret camera_driveway_2_rtsp_uri
-    extra_arguments: -q:v 1 -r 30 
+#   - platform: ffmpeg
+#     name: Driveway 2
+#     input: !secret camera_driveway_2_rtsp_uri
+#     extra_arguments: -q:v 1 -r 30 
 #  - platform: ffmpeg
 #    name: Driveway 3
 #    input: !secret camera_driveway_3_rtsp_uri
