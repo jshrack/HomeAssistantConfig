@@ -53,20 +53,20 @@
         data:
           entity_id: remote.living_room_lake
           activity: -1
-    volume_mute:
-      friendly_name: Volume Mute
-      value_template: "{{ is_state_attr('remote.living_room_lake', 'current_activity', '11490583') }}"
-      mute:
-        service: remote.send_command
-        data:
-          entity_id: remote.living_room_lake
-          device: 14782575
-          command:
-            - Mute
-      unmute:
-        service: remote.send_command
-        data:
-          entity_id: remote.living_room_lake
-          device: 14782575
-          command:
-            - Unmute
+    # volume_mute:
+    #   friendly_name: Volume Mute
+    #   value_template: "{{ is_state_attr('remote.living_room_lake', 'current_activity', '11490583') }}"
+    #   mute:
+    #     service: remote.send_command
+    #     data:
+    #       entity_id: remote.living_room_lake
+    #       device: 14782575
+    #       command:
+    #         - Mute
+    #   unmute:
+    #     service: remote.send_command
+    #     data:
+    #       entity_id: remote.living_room_lake
+    #       device: 14782575
+    #       command:
+    #         - Unmute
