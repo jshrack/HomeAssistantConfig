@@ -48,6 +48,12 @@ updater:
 discovery:
   enable:
     - homekit
+    
+zeroconf:
+
+mobile_app:
+
+ssdp:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -154,7 +160,7 @@ panel_iframe:
   grafana:
     title: Grafana
     icon: mdi:chart-timeline
-    url: https://hassio.local:3000
+    url: https://hassio-overseer.duckdns.org:3000
 
 weather:
   - platform: darksky
@@ -285,7 +291,7 @@ axis:
       - vmd3
       - tampering
   m2014e1:
-    host: 192.168.200.164
+    host: 192.168.200.233
     username: !secret axis_camera_username
     password: !secret axis_camera_password
     include:

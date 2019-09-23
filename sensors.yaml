@@ -8,15 +8,17 @@
 #       - ping
 #       - download
 #       - upload
-  - platform: pollen
+  - platform: iqvia
     zip_code: !secret lake_zip_code
     monitored_conditions:
-    - allergy_average_forecasted
-    - allergy_average_historical
-    - allergy_index_today
-    - allergy_index_tomorrow
-    - allergy_index_yesterday
-    - disease_average_forecasted
+      - allergy_average_forecasted
+      - allergy_index_today
+      - allergy_index_tomorrow
+      - asthma_average_forecasted
+      - asthma_index_today
+      - asthma_index_tomorrow
+      - disease_average_forecasted
+      - disease_index_today
   - platform: wunderground
     api_key: !secret wunderground_api_key
     pws_id: !secret wunderground_pws_id
