@@ -5,6 +5,8 @@
 !.travis.yml
 !fake_key.pem
 !README.md
+!themes
+!themes/home-assistant-community-themes
 !www
 *.conf
 *.txt
